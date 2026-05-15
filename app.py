@@ -484,8 +484,8 @@ def run_data_analysis_app():
 
     # Setup Gemini Pro
     try:
-        genai.configure(api_key=os.getenv('AIzaSyCrPR2EvuFuzt2SYMU6PMjD0kLjsohxSXU'))
-        model = genai.GenerativeModel("gemini-1.5-pro-latest")
+        genai.configure(api_key='AIzaSyCrPR2EvuFuzt2SYMU6PMjD0kLjsohxSXU')
+        model = genai.GenerativeModel("gemini-1.5-pro")
     except Exception as e:
         st.error(f"Error initializing Gemini Pro: {str(e)}")
         st.info("Please make sure you have set the GOOGLE_API_KEY environment variable.")
@@ -576,14 +576,14 @@ def run_data_analysis_app():
             # Add a button to clear chat history
             if st.button("Clear Chat History"):
                 st.session_state.chat_history = []
-                st.experimental_rerun()
+                st.rerun()
 
             # Add a button to upload a new file
             if st.button("Upload New File"):
                 st.session_state.file_uploaded = False
                 st.session_state.df = None
                 st.session_state.chat_history = []
-                st.experimental_rerun()
+                st.rerun()
 
 
 def run_data_wrangling_app():
@@ -653,7 +653,7 @@ def run_data_wrangling_app():
         if st.button("Reset Data"):
             st.session_state.df = None
             st.session_state.history = []
-            st.experimental_rerun()
+            st.rerun()
 
 
 if __name__ == "__main__":
